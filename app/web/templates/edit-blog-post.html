@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "blogpost.html" import blogPostForm %}
+    {% set pageTitle = 'Edit blog post' %}
+
+{% block content %}
+    <p>{{ message }}</p>
+
+    <div class="row">
+
+        <form class="col s12" method="post" action="/edit/blog/{{ blogPost._id }}">
+
+            <h2>Edit {{ blogPost.name }}</h2>
+
+            {{ blogPostForm(blogPost) }}
+
+            <button type="submit" class="btn waves-effect waves-light">
+                Save
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+
+{% endblock %}

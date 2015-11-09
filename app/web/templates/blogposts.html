@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "blogpost.html" import blogPostForm %}
+    {% set pageTitle = 'Blog posts' %}
+
+{% block content %}
+
+    {% if message %}
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel teal">
+                <span class="white-text">
+                    {{ message }}
+                </span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <h1>Blog posts</h1>
+
+    <ul class="collapsible" data-collapsible="accordion">
+        {% for item in blogPosts %}
+            <li>
+                <div class="collapsible-header"><i class="material-icons">library_books</i>{{ item.name }}</div>
+                <div class="collapsible-body">
+                    <p>{{ item.content }}</p>
+                    <form>
+                        <button type="submit" formmethod="post" formaction="/delete/blog/{{ item._id }}" class="waves-effect waves-light btn">Delete blog post</button>
+                        <a href="/edit/blog/{{ item._id }}" class="waves-effect waves-light btn">Edit blog post</a>
+                    </form>
+                </div>
+            </li>
+
+        {% else %}
+            <li>There are no blog posts</li>
+        {% endfor %}
+    </ul>
+
+
+    <div class="row">
+
+        <form class="col s12">
+
+            <h2>Create new blog post</h2>
+            {{ blogPostForm() }}
+            <button type="submit" formmethod="post" formaction="/blog" class="waves-effect waves-light btn">Submit</button>
+        </form>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "article-form.html" import articleForm %}
+    {% set pageTitle = 'Edit Article' %}
+
+{% block content %}
+<p>{{ message }}</p>
+
+    <div class="row">
+
+        <form class="col s12" method="post" action="/edit/articles/{{ article._id }}">
+
+            <h2>Edit {{ article.title }}</h2>
+
+            {{ articleForm(article) }}
+
+            <button type="submit" class="btn waves-effect waves-light">
+                Save
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+
+{% endblock %}

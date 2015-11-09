@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ pageTitle }}</title>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+<header>
+{% block header %}
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Home</a>
+      <ul id="nav-mobile" class="right">
+        <li><a {% if pageTitle %}class="active" {% endif %} href="/articles">Articles</a></li>
+        <li><a {% if pageTitle %}class="active" {% endif %} href="/blog">Blog</a></li>
+        <li><a {% if pageTitle %}class="active" {% endif %} href="/portfolio">Portfolio</a></li>
+        <li><a {% if pageTitle %}class="active" {% endif %} href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+{% endblock %}
+
+</header>
+
+
+<main class="container">
+  {% block content %}
+  {% endblock %}
+</main>
+
+{% block footer %}
+{% endblock %}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+
+<script>
+  $(".button-collapse").sideNav();
+  $('.collapsible').collapsible();
+  $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+</script>
+
+</body>
+</html>

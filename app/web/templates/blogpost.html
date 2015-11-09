@@ -1,0 +1,65 @@
+{% macro blogPostForm(blogPost) %}
+
+    <div class="card-panel">
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="teaser" name="teaser" type="text" class="validate" value="{{ blogPost.teaser }}">
+                <label for="teaser">Tease</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="authors" type="text" name="authors" class="validate" value="{{ blogPost.authors }}">
+                <label for="authors">authors</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="name" type="text" name="name" class="validate" value="{{ blogPost.name }}">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="slug" name="slug" type="text" class="validate" value="{{ blogPost.slug }}">
+                <label for="slug">slug</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-panel">
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="markdown" name="content" class="materialize-textarea">{{ blogPost.content }}</textarea>
+                <label for="markdown">Mardown</label>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <ul class="collapsible" data-collapsible="expandible">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">mode_edit</i>Output</div>
+                    <div class="collapsible-body">
+                        <pre>
+                            {% markdown %}
+                            {{ blogPost.content }}
+                            {% endmarkdown %}
+                        </pre>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">mode_edit</i>Output HTML</div>
+                    <div class="collapsible-body">
+                    <textarea id="markdown" class="materialize-textarea" disabled>
+                        {% markdown %}
+                        {{ blogPost.content }}
+                        {% endmarkdown %}
+                    </textarea>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+{% endmacro %}
