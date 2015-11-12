@@ -2,8 +2,8 @@
 - `brew install mongodb`
 - `npm install`
 - Set `MONGO_URL` as your MongoDB URL in `/app/core/mongoose.js`
-- `mkdir -p /db` create db folder
-- ```sudo chown -R `id -u` /db``` set permissions
+- `mkdir -p db` create db folder
+- ```sudo chown -R `id -u` db``` set permissions
 
 - `mongo` to start mongo shell
 - `use decmslan` switch to db
