@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% set pageTitle = 'Decmslan' %}
+    {% block content %}
+
+        {% if message %}
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel teal">
+                <span class="white-text">
+                    {{ message }}
+                </span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <h2>Articles</h2>
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for item in articles %}
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">library_books</i>{{ item.title }}</div>
+                    <div class="collapsible-body">
+                        <p>{{ item.content }}</p>
+                        <form>
+                            <button type="submit" formmethod="post" formaction="/delete/articles/{{ item._id }}" class="waves-effect waves-light btn">Delete article</button>
+                            <button type="submit" formmethod="get" formaction="/edit/articles/{{ item._id }}" class="waves-effect waves-light btn">Edit article</button>
+                        </form>
+                    </div>
+                </li>
+
+            {% else %}
+                <li>There are no articles</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Blogposts</h2>
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for item in blogPosts %}
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">library_books</i>{{ item.name }}</div>
+                    <div class="collapsible-body">
+                        <p>{{ item.content }}</p>
+                        <form>
+                            <button type="submit" formmethod="post" formaction="/delete/articles/{{ item._id }}" class="waves-effect waves-light btn">Delete blog post</button>
+                            <button type="submit" formmethod="get" formaction="/edit/articles/{{ item._id }}" class="waves-effect waves-light btn">Edit blog post</button>
+                        </form>
+                    </div>
+                </li>
+
+            {% else %}
+                <li>There are no articles</li>
+            {% endfor %}
+        </ul>
+
+    {% endblock %}

@@ -31,7 +31,7 @@ exports.viewArticle = function(req, res, next) {
             })
         } else {
             if (article) {
-                req.article = article
+                req.article = article;
                 next();
             } else {
                 res.json({
@@ -53,7 +53,7 @@ exports.viewArticle_v2 = function(req, res, next) {
             })
         } else {
             if (article) {
-                article.title = article.title + " v2"
+                article.title = article.title + " v2";
                 res.json({
                     type: true,
                     data: article

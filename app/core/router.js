@@ -6,6 +6,17 @@ var express = require('express')
     , markdown = require('nunjucks-markdown')
     , marked = require('marked');
 
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pendantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false
+});
+
 
 var controllers = {}
     , controllers_path = process.cwd() + '/app/controllers';
@@ -25,10 +36,18 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 var nunjucksConfig = nunjucks.configure('app/web/templates/', {
-    autoescape: true,
+    autoescape: false,
     express: app
 });
+
 markdown.register(nunjucksConfig, marked);
+
+app.get('/', controllers.article.viewArticles, controllers.blogpost.viewBlogPosts, function(req, res, next) {
+    res.render('home.html', {
+            articles: req.articles,
+            blogPosts:req.blogPosts
+        })
+});
 
 app.get('/api/articles', controllers.article.viewArticles, function(req, res, next) {
     res.json({
@@ -36,7 +55,6 @@ app.get('/api/articles', controllers.article.viewArticles, function(req, res, ne
         data: req.articles
     })
 });
-
 app.get('/articles', controllers.article.viewArticles, function(req, res, next) {
     res.render('articles.html', { articles: req.articles });
 });

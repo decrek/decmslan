@@ -28,7 +28,7 @@
                     <p>{{ item.content }}</p>
                     <form>
                         <button type="submit" formmethod="post" formaction="/delete/articles/{{ item._id }}" class="waves-effect waves-light btn">Delete article</button>
-                        <button type="submit" formmethod="get" formaction="/edit/articles/{{ item._id }}" class="waves-effect waves-light btn">Edit article</button>
+                        <a href="/edit/articles/{{ item._id }}" class="waves-effect waves-light btn">Edit article</a>
                     </form>
                 </div>
             </li>
